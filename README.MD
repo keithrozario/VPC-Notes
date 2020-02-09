@@ -13,9 +13,10 @@ Pre-requisites:
 # Installation
 
 Installation steps:
-    $ terraform apply
-    $ cd serverless
-    $ sls deploy
+
+    $terraform apply
+    $cd serverless
+    $sls deploy
     
 To uninstall
     $ cd serverless
