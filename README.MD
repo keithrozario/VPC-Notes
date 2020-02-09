@@ -22,6 +22,9 @@ To uninstall
     $ sls remove
     $ terraform destroy
 
+VPC will look something like this:
+![Screenshot](screenshots/VPC_Lambda.png)
+
 # VPC
 
 When creating a VPC, AWS automatically provisions:
