@@ -16,7 +16,7 @@ Installation steps:
     $ terraform apply
     $ cd serverless
     $ sls deploy
-
+    
 To uninstall
     $ cd serverless
     $ sls remove
