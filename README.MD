@@ -57,15 +57,17 @@ Then associate that route table to the Subnet you need.
 
 ## Security Groups
 
-Security Groups are tied to an EC2 instance, and encapsulate the EC2. Regardless of what the Route Table allows, the Security group must be enabled to support the traffic for it to happen.
+Security Groups are tied to an ENI of the instance (or other resources like lambda/RDS). Regardless of what the Route Table allows, the Security group must be enabled to support the traffic for it to happen for traffic to reach/exit the EC2.
 
-Security groups are stateful, hence if you enable ingress ICMP for example, it will allow the ICMP response to egress out. Similarly if you allow port 80 incoming -- it will allow the http response to go back out without an explicit egress(outbound) rule.
+Security groups can reference CIDR and IP ranges, but also other security groups (including themselves). They can reference security groups within the VPC or external from the VPC -- but not from security groups in other regions. 
+
+Security groups are **stateful**, hence if you enable ingress ICMP for example, it will allow the ICMP response to egress out. Similarly if you allow port 80 incoming -- it will allow the http response to go back out without an explicit egress(outbound) rule.
 
 You cannot filter traffic to or from a DNS server using network ACLs or security groups (for Amazon DNS). For traffic to external DNS Servers like Cloudflare, Google etc, these can be restricted using security groups/NACLs like any other traffic.
 
 All traffic in/out of an EC2 is restricted by the security group, regardless of the source or destination of the traffic.
 
-Remember security groups cannot block traffic -- only allow them.
+Remember security groups cannot block traffic -- only allow them, it's a bit tricky, but generally blocking traffic is recommended to be executed at the Network ACL level.
 
 ## Network ACL
 
